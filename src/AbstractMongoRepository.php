@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MongoRepository\Library;
+namespace Segakgd\MongoRepository;
 
 use InvalidArgumentException;
 use MongoDB\BSON\ObjectId;

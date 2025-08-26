@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MongoRepository\Library\Attributes;
+namespace Segakgd\MongoRepository\Attributes;
 
 use Attribute;
 

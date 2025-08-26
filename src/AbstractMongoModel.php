@@ -1,8 +1,8 @@
 <?php
 
-namespace App\MongoRepository\Library;
+namespace Segakgd\MongoRepository;
 
-use App\MongoRepository\Library\Attributes\MongoField;
+use Segakgd\MongoRepository\Attributes\MongoField;
 use MongoDB\BSON\ObjectId;
 use MongoDB\BSON\UTCDateTime;
 use MongoDB\Model\BSONDocument;
