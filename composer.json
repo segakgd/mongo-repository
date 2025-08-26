@@ -1,0 +1,27 @@
+{
+    "name": "segakgd/mongo_repository",
+    "description": "Simple MongoDB repository manager",
+    "type": "library",
+    "keywords": [
+        "mongodb",
+        "repository"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Segrey Krivosheev",
+            "email": "segakgd@yandex.ru",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Segakgd\\MongoRepository\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.2",
+        "mongodb/mongodb": "^2.1",
+        "symfony/dependency-injection": "^6.0 || ^7.0"
+    },
+}
