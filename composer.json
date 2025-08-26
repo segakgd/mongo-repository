@@ -2,6 +2,7 @@
     "name": "segakgd/mongo_repository",
     "description": "Simple MongoDB repository manager",
     "type": "library",
+    "version": "1.0.0",
     "keywords": [
         "mongodb",
         "repository"
