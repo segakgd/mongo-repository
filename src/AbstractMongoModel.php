@@ -8,6 +8,9 @@ use MongoDB\BSON\UTCDateTime;
 use MongoDB\Model\BSONDocument;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionNamedType;
+use ReflectionUnionType;
+use ReflectionType;
 
 abstract class AbstractMongoModel
 {
@@ -36,10 +39,9 @@ abstract class AbstractMongoModel
                 $property->setAccessible(true);
                 $value = $data[$key];
 
-                // Если свойство ожидает array, а пришёл BSONDocument — конвертируем
                 $type = $property->getType();
 
-                if ($type && $type->getName() === 'array' && $value instanceof BSONDocument) {
+                if ($type && static::isArrayType($type) && $value instanceof BSONDocument) {
                     $value = json_decode(json_encode($value), true);
                 }
 
@@ -48,6 +50,30 @@ abstract class AbstractMongoModel
         }
 
         return $instance;
+    }
+
+    private static function isArrayType(?ReflectionType $type): bool
+    {
+        if ($type === null) {
+            return false;
+        }
+
+        // Если это union type
+        if ($type instanceof ReflectionUnionType) {
+            foreach ($type->getTypes() as $subType) {
+                if ($subType instanceof ReflectionNamedType && $subType->getName() === 'array') {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Если простой
+        if ($type instanceof ReflectionNamedType) {
+            return $type->getName() === 'array';
+        }
+
+        return false;
     }
 
     public function toData(): array
